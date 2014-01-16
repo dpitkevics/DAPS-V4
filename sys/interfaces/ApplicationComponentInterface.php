@@ -6,17 +6,15 @@
  * and open the template in the editor.
  */
 
-namespace System;
+namespace System\Interfaces;
 
 /**
- * Description of ApplicationClass
  *
- * @author Daniels
+ * @author User
  */
-class ApplicationClass {
-    
-    public function __construct($config) {
-        var_dump($config);
-    }
-    
+interface ApplicationComponentInterface {
+
+    public function init();
+
+    public function getIsInitialized();
 }

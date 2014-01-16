@@ -13,10 +13,11 @@ namespace System;
  *
  * @author Daniels
  */
-class ItemClass {
+class Item {
 
     private $_events;
     private $_parts;
+    private $_config = array();
 
     public function __get($name) {
         $getter = "get" . $name;
@@ -25,11 +26,11 @@ class ItemClass {
         else if (strncasecmp($name, 'on', 2) === 0 && method_exists($this, $name)) {
             $name = strtolower($name);
             if (!isset($this->_events[$name]))
-                $this->_events[$name] = new ListClass();
+                $this->_events[$name] = new EventList();
             return $this->events[$name];
-        } else if (isset($this->parts[$name]))
-            return $this->parts[$name];
-        else if (is_array($this->parts)) {
+        } else if (isset($this->_parts[$name]))
+            return $this->_parts[$name];
+        else if (is_array($this->_parts)) {
             foreach ($this->_parts as $object) {
                 if ($object->getEnabled() && (property_exists($object, $name) || $object->canGetProperty($name)))
                     return $object->$name;
@@ -46,15 +47,15 @@ class ItemClass {
         else if (strncasecmp($name, 'on', 2) === 0 && method_exists($this, $name)) {
             $name = strtolower($name);
             if (!isset($this->_events[$name]))
-                $this->_events[$name] = new ListClass();
+                $this->_events[$name] = new EventList();
             return $this->_events[$name]->add($value);
         } else if (is_array($this->_parts)) {
             foreach ($this->_parts as $object) {
                 if ($object->getEnabled() && (property_exists($object, $name) || $object->canSetProperty($name)))
                     return $object->$name = $value;
             }
-        }
-
+        } else if (strncasecmp($name, 'conf-', 5) === 0)
+                return $this->_config[substr ($name, 5)] = $value;
         if (method_exists($this, 'get' . $name))
             throw new SystemException(Lang::tr('sys', 'Property "{class}.{property}" is read only.', array('{class}' => get_class($this), '{property}' => $name)));
         else
@@ -126,7 +127,7 @@ class ItemClass {
 
     public function attachBehavior($name, $behavior) {
         if (!($behavior instanceof BehaviorInterface))
-            $behavior = BaseClass::createComponent($behavior);
+            $behavior = Base::createComponent($behavior);
         $behavior->setEnabled(true);
         $behavior->attach($this);
         return $this->_parts[$name] = $behavior;
@@ -198,7 +199,7 @@ class ItemClass {
         if ($this->hasEvent($name)) {
             $name = strtolower($name);
             if (!isset($this->_events[$name]))
-                $this->_events[$name] = new ListClass();
+                $this->_events[$name] = new EventList();
             return $this->_events[$name];
         } else
             throw new SystemException(Lang::tr('sys', 'Event "{class}.{event}" is not defined.', array('{class}' => get_class($this), '{event}' => $name)));
@@ -256,7 +257,7 @@ class ItemClass {
 
 }
 
-class EventClass extends ItemClass {
+class Event extends Item {
     
     public $sender;
     
@@ -271,4 +272,4 @@ class EventClass extends ItemClass {
     
 }
 
-class EnumerableClass {}
+class Enumerable {}
