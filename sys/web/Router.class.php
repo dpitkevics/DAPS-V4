@@ -14,5 +14,13 @@ namespace System\Web;
  * @author User
  */
 class Router extends \System\ApplicationPart {
-    //put your code here
+    
+    public function __construct() {
+        return true;
+    }
+    
+    public function parseUrl(Http $http) {
+        \System\Base::dump($http);
+    }
+    
 }

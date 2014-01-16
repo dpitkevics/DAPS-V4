@@ -18,6 +18,7 @@ use System\Application as App;
 class WebApplication extends App {
 
     public $catchAllRequest;
+    public $charset = "utf-8";
     
     public function process() {
         \System\Base::setApp($this);
@@ -26,11 +27,9 @@ class WebApplication extends App {
             $route = $this->catchAllRequest[0];
             foreach (array_splice($this->catchAllRequest, 1) as $name => $value)
                 $_GET[$name] = $value;
-        } //else
-        $router = $this->getRouter();
-        var_dump($router);exit;
-            $route = $this->getRouter()->parseUrl($this->getRequest());
-        $this->runController($route);
+        } else
+            $route = $this->getRouter()->parseUrl($this->getHttp());
+        //$this->runController($route);
     }
     
     public function getRouter() {

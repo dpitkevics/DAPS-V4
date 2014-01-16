@@ -121,7 +121,14 @@ class Base {
             'Router' => 'System\Web\Router',
             'ErrorEvent' => 'System\ErrorEvent',
             'ErrorHandler' => 'System\ErrorHandler',
+            'Http' => 'System\Web\Http',
         );
+    }
+    
+    public static function dump ($var) {
+        echo '<pre>';
+        var_dump($var);
+        echo '</pre>';
     }
 
 }

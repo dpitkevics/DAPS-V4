@@ -26,6 +26,10 @@ abstract class Application extends Module implements Interfaces\ControllerInterf
         $this->registerCoreComponents();
     }
 
+    public function getHttp() {
+        return $this->getComponent('http');
+    }
+
     public function getErrorHandler() {
         return $this->getComponent('errorHandler');
     }
