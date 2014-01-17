@@ -17,4 +17,11 @@ abstract class Application extends Component {
     
     abstract function process();
     
+    public function __construct() {
+        $this->init();
+    }
+    
+    public function init() {
+    }
+    
 }

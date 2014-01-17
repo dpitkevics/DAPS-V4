@@ -6,18 +6,15 @@
  * and open the template in the editor.
  */
 
-namespace base\web;
+namespace base\libs;
 
-use base\core\Application;
+use base\core\ApplicationComponent;
+
 /**
- * Description of WebApp
+ * Description of Uri
  *
  * @author User
  */
-class WebApplication extends Application {
-    
-    public function process() {
-        
-    }
-    
+class Uri extends ApplicationComponent {
+    //put your code here
 }
