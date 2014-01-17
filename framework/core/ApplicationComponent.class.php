@@ -6,12 +6,13 @@
  * and open the template in the editor.
  */
 
-namespace System\Interfaces;
+namespace base\core;
 
 /**
+ * Description of ApplicationComponent
  *
  * @author User
  */
-interface ControllerInterface {
-    public function process();
+class ApplicationComponent extends Component {
+    //put your code here
 }

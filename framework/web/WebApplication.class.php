@@ -6,17 +6,18 @@
  * and open the template in the editor.
  */
 
-namespace System;
+namespace base\web;
 
+use base\core\Application;
 /**
- * Description of Lang
+ * Description of WebApp
  *
  * @author User
  */
-class Lang {
+class WebApplication extends Application {
     
-    public static function tr($key, $text, array $params = array()) {
-        return str_replace(array_keys($params), array_values($params), $text);
+    public function process() {
+        
     }
-    
+
 }

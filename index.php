@@ -1,11 +1,9 @@
 <?php
 
-define('APP_INDEX', dirname(__FILE__));
-define('APP_DIR', dirname(__FILE__) . '/app');
+define('FTK_ROOT', dirname(__FILE__));
 
-define('APP_DEBUG', true);
+$ftkDir = FTK_ROOT . '/framework';
 
-$sysDir = dirname(__FILE__) . '/sys';
-require_once $sysDir . '/Base.class.php';
+require_once $ftkDir . '/Bootstrap.class.php';
 
-System\Base::makeApp()->run();
+\base\Bootstrap::prepare()->process();

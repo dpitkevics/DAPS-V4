@@ -6,13 +6,15 @@
  * and open the template in the editor.
  */
 
-namespace System;
+namespace base\core;
 
 /**
- * Description of SystemException
+ * Description of Application
  *
  * @author User
  */
-class SystemException extends \Exception {
-    //put your code here
+abstract class Application extends Component {
+    
+    abstract function process();
+    
 }

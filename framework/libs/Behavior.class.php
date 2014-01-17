@@ -6,15 +6,14 @@
  * and open the template in the editor.
  */
 
-namespace System\Interfaces;
+namespace base\libs;
 
+use base\core\ApplicationComponent;
 /**
+ * Description of Behavior
  *
  * @author User
  */
-interface ApplicationComponentInterface {
-
-    public function init();
-
-    public function getIsInitialized();
+class Behavior extends ApplicationComponent {
+    //put your code here
 }
