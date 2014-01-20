@@ -123,4 +123,19 @@ class Input extends ApplicationComponent {
         return self::$_validatedCookies[$key] = Validator::validateString($_COOKIE[$key]);
     }
     
+    public static function exists($type, $key) {
+        switch ($type) {
+            case 'post':
+                return isset($_POST);
+            case 'get':
+                return isset($_GET[$key]);
+            case 'request':
+                return isset($_REQUEST[$key]);
+            case 'cookie':
+                return isset($_COOKIE[$key]);
+        }
+        
+        throw new SystemException(Lang::tr('Undefined type "' . $type . '". You are able to use one of 4 types: post, get, request or cookie'));
+    }
+    
 }
