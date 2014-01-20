@@ -34,7 +34,7 @@ abstract class Application extends Component {
         }
         
         $this->_config = $this->processConfig();
-        \base\helpers\Debug::dump($this->_config);
+        
         register_shutdown_function(array($this, 'end'));
         
         $this->process();

@@ -89,7 +89,7 @@ class Component {
         if ($key === null) {
             return $this->_config;
         }
-        \base\helpers\Debug::dumpRef($key, $this->_config);
+
         if (isset($this->_config[$key])) {
             return $this->_config[$key];
         }

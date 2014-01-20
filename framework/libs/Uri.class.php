@@ -32,7 +32,7 @@ class Uri extends ApplicationComponent {
     
     public function parseRoutes() {
         $this->routes = array_merge($this->routes, $this->getConfig('routes'));
-        \base\helpers\Debug::dump($this->routes);
+        
         foreach ($this->routes as $routePattern => $route) {
             $this->_routes[] = $this->createRoute($routePattern, $route);
         }
