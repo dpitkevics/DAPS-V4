@@ -1,8 +1,17 @@
 <?php
 
-define('DS', DIRECTORY_SEPARATOR);
+if (!function_exists('def')) {
+
+    function def($key, $value) {
+        if (!defined($key)) {
+            define($key, $value);
+        }
+    }
+
+}
+def('DS', DIRECTORY_SEPARATOR);
 /**
  * FToolKit base dir
  */
-defined('FTK_DIR') or define('FTK_DIR', dirname(__FILE__) . '/..');
-defined('FTK_DEBUG') or define('FTK_DEBUG', true);
+def('FTK_DIR', dirname(__FILE__) . '/..');
+def('FTK_DEBUG', true);

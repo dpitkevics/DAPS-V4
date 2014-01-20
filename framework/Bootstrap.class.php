@@ -14,19 +14,19 @@ namespace base;
  * @author User
  */
 class Bootstrap {
-    
+
     public static function prepare() {
         self::initializeApp();
         return new web\WebApplication();
     }
-    
+
     public static function initializeApp() {
         require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'definitions' . DIRECTORY_SEPARATOR . 'main.php';
         spl_autoload_register(__NAMESPACE__ . '\Bootstrap::autoloader');
     }
-    
+
     public static function autoloader($classname) {
-        if (strpos($classname, 'interface')!==false) {
+        if (strpos($classname, 'interface') !== false) {
             $interface = true;
         } else {
             $interface = false;
@@ -36,8 +36,12 @@ class Bootstrap {
         } else {
             $dir = FTK_DIR;
         }
-        
-        include_once $dir . DS . str_replace('base\\', '', $classname) . '.' . ($interface ? 'interface' : 'class') . '.php';
+        $dir = realpath($dir . DS . str_replace('base\\', '', $classname) . '.' . ($interface ? 'interface' : 'class') . '.php');
+        if ($dir === false) {
+            echo '<pre>Could not find file ' . print_r($dir, 1) . '</pre>';
+        } else {
+            include_once $dir;
+        }
     }
-    
+
 }
