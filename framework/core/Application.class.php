@@ -48,8 +48,12 @@ abstract class Application extends Component {
         }
     }
     
-    public function onProcess(Event $event) {
-        $this->raiseEvent('onProcess', $event);
+    public function onProcessStart(Event $event) {
+        $this->raiseEvent('onProcessStart', $event);
+    }
+    
+    public function onProcessEnd(Event $event) {
+        $this->raiseEvent('onProcessEnd', $event);
     }
     
     public function onStart(Event $event) {

@@ -16,5 +16,11 @@ use base\core\ApplicationComponent;
  * @author User
  */
 class Uri extends ApplicationComponent {
-    //put your code here
+    
+    public function __construct() {
+        parent::__construct();
+        
+        \base\helpers\Debug::dump(Input::get('p'));
+    }
+    
 }

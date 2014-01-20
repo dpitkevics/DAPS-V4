@@ -9,7 +9,7 @@
 namespace base\web;
 
 use base\core\Application;
-
+use base\libs\Uri;
 /**
  * Description of WebApp
  *
@@ -17,9 +17,17 @@ use base\core\Application;
  */
 class WebApplication extends Application {
     
+    private $_uri = null;
+    
     public function process() {
-        if ($this->hasEventHandler('onProcess')) {
-            $this->onProcess(new Event($this));
+        if ($this->hasEventHandler('onProcessStart')) {
+            $this->onProcessStart(new Event($this));
+        }
+        
+        $this->_uri = new Uri();
+        
+        if ($this->hasEventHandler('onProcessEnd')) {
+            $this->onProcessEnd(new Event($this));
         }
     }
     

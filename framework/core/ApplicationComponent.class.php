@@ -14,5 +14,14 @@ namespace base\core;
  * @author User
  */
 class ApplicationComponent extends Component {
-    //put your code here
+    
+    private $_cid;
+    
+    public function __construct() {
+        $this->init();
+    }
+    
+    protected function init() {
+        $this->_cid = substr(md5(rand(10000000, 99999999) . date('YmdHis')), 20);
+    }
 }
