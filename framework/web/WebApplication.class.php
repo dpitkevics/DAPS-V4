@@ -25,6 +25,7 @@ class WebApplication extends Application {
         }
         
         $this->_uri = new Uri();
+        $this->_uri->parseRoutes();
         
         if ($this->hasEventHandler('onProcessEnd')) {
             $this->onProcessEnd(new Event($this));

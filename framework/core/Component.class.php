@@ -23,7 +23,7 @@ class Component {
     private $_events = array();
     private $_data = array();
     private $_objects;
-    private $_config = array();
+    protected $_config = array();
 
     public function __get($name) {
         $getter = 'get' . ucfirst($name);
@@ -83,6 +83,17 @@ class Component {
         }
         
         throw new SystemException(Lang::tr('system', '{class} and its behaviors do not have a method or closure named "{name}".', array('{class}' => get_class($this), '{name}' => $name)));
+    }
+    
+    public function getConfig($key = null) {
+        if ($key === null) {
+            return $this->_config;
+        }
+        \base\helpers\Debug::dumpRef($key, $this->_config);
+        if (isset($this->_config[$key])) {
+            return $this->_config[$key];
+        }
+        throw new SystemException(Lang::tr('system', '"' . $key . '" is not specified in config file.'));
     }
     
     public function hasEvent($name) {

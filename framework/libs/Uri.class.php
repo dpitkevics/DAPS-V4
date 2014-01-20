@@ -17,10 +17,33 @@ use base\core\ApplicationComponent;
  */
 class Uri extends ApplicationComponent {
     
+    private $_p = null;
+    private $_routes = array();
+
+    public $routes = array();
+    
     public function __construct() {
         parent::__construct();
         
-        \base\helpers\Debug::dump(Input::get('p'));
+        if ($this->_p === null) {
+            $this->_p = Input::get('p');
+        }
+    }
+    
+    public function parseRoutes() {
+        $this->routes = array_merge($this->routes, $this->getConfig('routes'));
+        \base\helpers\Debug::dump($this->routes);
+        foreach ($this->routes as $routePattern => $route) {
+            $this->_routes[] = $this->createRoute($routePattern, $route);
+        }
+    }
+    
+    public function createRoute ($routePattern, $route) {
+        return new Route($routePattern, $route);
+    }
+    
+    public function parseUrl() {
+        $urlParts = explode('/', $this->_p);
     }
     
 }
