@@ -1,6 +1,6 @@
 <?php
 
 return array(
-    'app-name' => 'DAPS APP',
+    'app-name' => 'ftk',
 );
 

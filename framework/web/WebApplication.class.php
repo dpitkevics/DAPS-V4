@@ -9,6 +9,7 @@
 namespace base\web;
 
 use base\core\Application;
+
 /**
  * Description of WebApp
  *
@@ -17,7 +18,9 @@ use base\core\Application;
 class WebApplication extends Application {
     
     public function process() {
-        
+        if ($this->hasEventHandler('onProcess')) {
+            $this->onProcess(new Event($this));
+        }
     }
     
 }

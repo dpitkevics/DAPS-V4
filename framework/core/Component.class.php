@@ -118,7 +118,7 @@ class Component {
     
     public function raiseEvent($name, $event) {
         if (isset($this->_events[$name])) {
-            foreach ($this->_events[$name] as $handler) {
+            foreach ($this->_events[$name]->getHandlers() as $handler) {
                 if (is_string($handler)) {
                     call_user_func($handler, $event);
                 } else if (is_callable($handler, true)) {

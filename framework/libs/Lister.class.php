@@ -280,5 +280,9 @@ class Lister {
     public function offsetUnset($offset) {
         $this->removeAt($offset);
     }
+    
+    public function getHandlers() {
+        return $this->_d;
+    }
 
 }

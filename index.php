@@ -6,4 +6,4 @@ $ftkDir = FTK_ROOT . '/framework';
 
 require_once $ftkDir . '/Bootstrap.class.php';
 
-\base\Bootstrap::prepare()->process();
+\base\Bootstrap::prepare()->run();
