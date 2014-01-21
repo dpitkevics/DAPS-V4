@@ -10,6 +10,7 @@ namespace base\web;
 
 use base\core\Application;
 use base\libs\Uri;
+use base\libs\Request;
 /**
  * Description of WebApp
  *
@@ -24,8 +25,9 @@ class WebApplication extends Application {
             $this->onProcessStart(new Event($this));
         }
         
-        $this->_uri = new Uri();
-        $this->_uri->parseRoutes();
+        $uri = new Uri();
+        $this->_uri = $uri->parseUrl(new Request());
+        \base\helpers\Debug::dump($this);
         
         if ($this->hasEventHandler('onProcessEnd')) {
             $this->onProcessEnd(new Event($this));
