@@ -25,7 +25,6 @@ class Uri extends ApplicationComponent {
     
     public function __construct() {
         parent::__construct();
-        
         if ($this->_p === null) {
             $this->_p = (Input::exists('get', 'p') ? Input::get('p') : null);
         }
