@@ -173,12 +173,12 @@ class Route extends ApplicationComponent {
             if ($urlSuffix != '' && $urlSuffix !== '/')
                 return false;
         }
-
+        
         if ($this->hasHostInfo)
             $pathInfo = strtolower($request->getHostInfo()) . rtrim('/' . $pathInfo, '/');
-
+        
         $pathInfo.='/';
-
+        
         if (preg_match($this->pattern . $case, $pathInfo, $matches)) {
             foreach ($this->defaultParams as $name => $value) {
                 if (!isset($_GET[$name]))
