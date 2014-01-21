@@ -21,11 +21,9 @@ class Uri extends ApplicationComponent {
     private $_p = null;
     private $_routes = array();
     private $_routeVar = 'p';
-    
     public $caseSensitive = true;
     public $useStrictParsing = false;
     public $urlSuffix = 'html';
-    
     public $routes = array();
 
     public function __construct() {
@@ -56,13 +54,11 @@ class Uri extends ApplicationComponent {
     public function parseUrl(Request $request) {
         $rawPathInfo = $request->getPathInfo();
         $pathInfo = $this->removeUrlSuffix($rawPathInfo, $this->urlSuffix);
-        
         foreach ($this->_routes as $i => $route) {
             if (($r = $route->parseUrl($this, $request, $pathInfo, $rawPathInfo)) !== false) {
-                return Input::exists('get', $this->_routeVar) ? Input::get($this->_routeVar) : $r;
+                return (Input::exists('get', $this->_routeVar) && strpos(trim($this->_routeVar, '/'), '/')) ? Input::get($this->_routeVar) : $r;
             }
         }
-        
         if (Input::exists('get', $this->_routeVar)) {
             return Input::get($this->_routeVar);
         } else if (Input::exists('post', $this->_routeVar)) {
