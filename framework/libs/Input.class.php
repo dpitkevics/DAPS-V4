@@ -126,7 +126,7 @@ class Input extends ApplicationComponent {
     public static function exists($type, $key) {
         switch ($type) {
             case 'post':
-                return isset($_POST);
+                return isset($_POST[$key]);
             case 'get':
                 return isset($_GET[$key]);
             case 'request':
