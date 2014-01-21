@@ -85,17 +85,6 @@ class Component {
         throw new SystemException(Lang::tr('system', '{class} and its behaviors do not have a method or closure named "{name}".', array('{class}' => get_class($this), '{name}' => $name)));
     }
     
-    public function getConfig($key = null) {
-        if ($key === null) {
-            return $this->_config;
-        }
-
-        if (isset($this->_config[$key])) {
-            return $this->_config[$key];
-        }
-        throw new SystemException(Lang::tr('system', '"' . $key . '" is not specified in config file.'));
-    }
-    
     public function hasEvent($name) {
         return !strncasecmp($name, 'on', 2) && method_exists($this, $name);
     }

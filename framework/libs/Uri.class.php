@@ -9,6 +9,7 @@
 namespace base\libs;
 
 use base\core\ApplicationComponent;
+use base\core\Ftk;
 
 /**
  * Description of Uri
@@ -31,7 +32,7 @@ class Uri extends ApplicationComponent {
     }
     
     public function parseRoutes() {
-        $this->routes = array_merge($this->routes, $this->getConfig('routes'));
+        $this->routes = array_merge($this->routes, Ftk::getConfig('routes'));
         
         foreach ($this->routes as $routePattern => $route) {
             $this->_routes[] = $this->createRoute($routePattern, $route);

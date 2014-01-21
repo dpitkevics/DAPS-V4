@@ -33,8 +33,7 @@ abstract class Application extends Component {
             $this->onStart(new Event($this));
         }
         
-        $this->_config = $this->processConfig();
-        
+        Ftk::setConfig();
         register_shutdown_function(array($this, 'end'));
         
         $this->process();
@@ -48,11 +47,6 @@ abstract class Application extends Component {
         if ($exit) {
             exit($status);
         }
-    }
-    
-    public function processConfig () {
-        $configDir = FTK_ROOT . DS . 'app' . DS . 'setup' . DS . 'config.php';
-        return include_once $configDir;
     }
     
     public function onProcessStart(Event $event) {

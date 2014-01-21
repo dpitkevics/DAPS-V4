@@ -17,7 +17,8 @@ class Bootstrap {
 
     public static function prepare() {
         self::initializeApp();
-        return new web\WebApplication();
+        core\Ftk::$_app = new web\WebApplication();
+        return core\Ftk::$_app;
     }
 
     public static function initializeApp() {
