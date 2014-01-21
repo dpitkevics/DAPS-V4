@@ -34,7 +34,7 @@ class Uri extends ApplicationComponent {
         parent::init();
 
         if ($this->_p === null) {
-            $this->_p = (Input::exists('get', 'p') ? Input::get('p') : null);
+            $this->_p = (Input::exists('get', $this->_routeVar) ? Input::get($this->_routeVar) : null);
         }
         $this->parseRoutes();
     }
