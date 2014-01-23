@@ -5,5 +5,7 @@ return array(
     'routes' => array(
         'home' => 'home/index',
     ),
+    'modules' => array(
+    ),
 );
 

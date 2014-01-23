@@ -15,3 +15,5 @@ def('DS', DIRECTORY_SEPARATOR);
  */
 def('FTK_DIR', dirname(__FILE__) . '/..');
 def('FTK_DEBUG', true);
+def('FTK_ENABLE_EXCEPTION_HANDLER', true);
+def('FTK_ENABLE_ERROR_HANDLER', true);
